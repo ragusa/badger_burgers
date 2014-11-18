@@ -1,4 +1,6 @@
 #include "BadgerApp.h" 
+
+// Moose includes
 #include "Moose.h"
 // include "ElkApp.h"
 #include "ModulesApp.h"
