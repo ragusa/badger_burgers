@@ -1,0 +1,42 @@
+#include "BadgerApp.h"
+#include "Moose.h"
+#include "AppFactory.h"
+
+template<>
+InputParameters validParams<BadgerApp>()
+{
+  InputParameters params = validParams<MooseApp>();
+  return params;
+}
+
+BadgerApp::BadgerApp(const std::string & name, InputParameters parameters) :
+    MooseApp(name, parameters)
+{
+  srand(processor_id());
+
+  Moose::registerObjects(_factory);
+  BadgerApp::registerObjects(_factory);
+
+  Moose::associateSyntax(_syntax, _action_factory);
+  BadgerApp::associateSyntax(_syntax, _action_factory);
+}
+
+BadgerApp::~BadgerApp()
+{
+}
+
+void
+BadgerApp::registerApps()
+{
+  registerApp(BadgerApp);
+}
+
+void
+BadgerApp::registerObjects(Factory & factory)
+{
+}
+
+void
+BadgerApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
+{
+}
